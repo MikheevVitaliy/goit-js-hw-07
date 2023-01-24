@@ -3,36 +3,35 @@ import { galleryItems } from './gallery-items.js';
 
 console.log(galleryItems);
 
-// // Change code below this line
-// const lightboxRef = document.querySelector('.gallery');
-// const lightboxMarkup = createBoxItem(galleryItems);
-// lightboxRef.insertAdjacentHTML(`afterbegin`, lightboxMarkup);
+const containerImg = document.querySelector('.gallery');
+const galleryMarkup = createImgModalMarkup(galleryItems);
 
-// function createBoxItem(galleryItems) {
-//   return galleryItems
-//     .map(
-//       ({ preview, original, description }) =>
-//         `<a class="gallery__item" href="${original}">
-//                 <img
-//                 class="gallery__image"
-//                 src="${preview}"
-//                 alt="${description}"
-//                 />
-//             </a>`
-//     )
-//     .join('');
-// }
+containerImg.insertAdjacentHTML('beforeend', galleryMarkup);
 
-// lightboxRef.addEventListener('click', onBoxRefClick);
+function createImgModalMarkup(imgItems) {
+  return galleryItems
+    .map(({ preview, original, description }) => {
+      return `<a class="gallery__item" href="${original}">
+  <img class="gallery__image" src="${preview}" alt="${description}" />
+</a>`;
+    })
+    .join('');
+}
+// ========================================
+containerImg.addEventListener('click', onGalleryClick);
 
-// function onBoxRefClick(event) {
-//   event.preventDefault();
-//   if (!event.target.classList.contains('gallery__image')) {
-//     return;
-//   }
-//   const lightbox = new SimpleLightbox('.gallery a', {
-//     captionsData: 'alt',
-//     captionDelay: 250,
-//   });
-// }
-// console.log(galleryItems);
+function onGalleryClick(event) {
+  event.preventDefault();
+
+  const isImgSwatchEl = event.target.classList.contains('gallery__image');
+  //event.target.nodeName !== 'IMG'
+  if (!isImgSwatchEl) {
+    return;
+  }
+  console.log(event.target);
+  // ========================================
+  const modal = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionDelay: 250,
+  });
+}

@@ -27,10 +27,7 @@ function createImgModalMarkup(imgItems) {
     .join('');
 }
 // ========================================
-
 containerImg.addEventListener('click', onGalleryClick);
-
-let modalWindow;
 
 function onGalleryClick(event) {
   event.preventDefault();
@@ -42,16 +39,16 @@ function onGalleryClick(event) {
   }
   console.log(event.target);
   // ========================================
-  modalWindow = basicLightbox.create(
-    `<img src='${event.target.dataset.source}' width="800" height="600">`
+  const modal = basicLightbox.create(
+    `<img src='${event.target.dataset.source}' width="900">`
   );
-  modalWindow.show();
-
+  modal.show();
+  // ==========================================
   window.addEventListener('keydown', onPressButtonCloce);
 
   function onPressButtonCloce(e) {
     if (e.code === 'Escape' && basicLightbox.visible()) {
-      modalWindow.close();
+      modal.close();
     }
   }
 }
