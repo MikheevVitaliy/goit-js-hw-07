@@ -18,20 +18,20 @@ function createImgModalMarkup(imgItems) {
     .join('');
 }
 // ========================================
-containerImg.addEventListener('click', onGalleryClick);
+// containerImg.addEventListener('click', onGalleryClick);
 
-function onGalleryClick(event) {
-  event.preventDefault();
+// function onGalleryClick(event) {
+//   event.preventDefault();
 
-  const isImgSwatchEl = event.target.classList.contains('gallery__image');
-  //event.target.nodeName !== 'IMG'
-  if (!isImgSwatchEl) {
-    return;
-  }
-  console.log(event.target);
-  // ========================================
-  const modal = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
-}
+//   const isImgSwatchEl = event.target.classList.contains('gallery__image');
+//   //event.target.nodeName !== 'IMG'
+//   if (!isImgSwatchEl) {
+//     return;
+//   }
+//   console.log(event.target);
+// ========================================
+const modal = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+// }

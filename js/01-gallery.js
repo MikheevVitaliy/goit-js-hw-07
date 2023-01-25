@@ -40,9 +40,17 @@ function onGalleryClick(event) {
   console.log(event.target);
   // ========================================
   const modal = basicLightbox.create(
-    `<img src='${event.target.dataset.source}' width="900">`
+    `<img src='${event.target.dataset.source}' width="900">`,
+    {
+      onShow: modal => {
+        window.addEventListener('keydown', onPressButtonCloce);
+      },
+      onClose: modal => {
+        window.removeEventListener('keydown', onPressButtonCloce);
+      },
+    }
   );
-  modal.show();
+  // modal.show();
   // ==========================================
   window.addEventListener('keydown', onPressButtonCloce);
 
@@ -51,4 +59,5 @@ function onGalleryClick(event) {
       modal.close();
     }
   }
+  modal.show();
 }
